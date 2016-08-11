@@ -91,7 +91,7 @@ export default class SidebarItem extends Component {
     )
   }
 }
-
+//
 SidebarItem.contextTypes = {
-  router: React.PropTypes.object.isRequired
+  router: React.PropTypes.object
 }
