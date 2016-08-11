@@ -3,7 +3,9 @@ import { render } from 'react-dom';
 import  Ghost from 'react-icons/lib/fa/snapchat-ghost';
 
 // import Sidebar from '../src/Sidebar';
-import { Sidebar } from '../src';
+import {Sidebar} from '../src';
+
+console.log(Sidebar);
 
 let items = [
   { id: 4, type: "selector", options: [
