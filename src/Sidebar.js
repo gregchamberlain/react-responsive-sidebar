@@ -7,14 +7,14 @@ import LeftArrow from 'react-icons/lib/fa/chevron-left';
 class Sidebar extends Component {
 
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       collapsed: window.innerWidth <= this.props.breakPoint,
       open: false,
-    }
-    this._toggle = this._toggle.bind(this)
-    this._handleResize = this._handleResize.bind(this)
-    this._close = this._close.bind(this)
+    };
+    this._toggle = this._toggle.bind(this);
+    this._handleResize = this._handleResize.bind(this);
+    this._close = this._close.bind(this);
   }
 
   componentDidMount() {
@@ -28,7 +28,7 @@ class Sidebar extends Component {
   _handleResize(e) {
     if (window.innerWidth <= this.props.breakPoint && !this.state.collapsed) {
       this.setState({collapsed: true});
-    } else if(window.innerWidth > this.props.breakPoint && this.state.collapsed) {
+    }else if(window.innerWidth > this.props.breakPoint && this.state.collapsed){
       this.setState({collapsed: false});
     }
   }
@@ -38,8 +38,8 @@ class Sidebar extends Component {
   }
 
   _toggle() {
-    const open = !this.state.open
-    this.setState({open: open})
+    const open = !this.state.open;
+    this.setState({open: open});
   }
 
   render() {
@@ -54,7 +54,7 @@ class Sidebar extends Component {
       background: this.props.background,
       color: this.props.color,
       transition: 'left .5s ease-in'
-    }
+    };
 
     const contentStyle = {
       position: 'fixed',
@@ -65,7 +65,7 @@ class Sidebar extends Component {
       overflowX: 'hidden',
       overflowY: 'scroll',
       transition: 'left .5s ease-in'
-    }
+    };
 
     const _toggleStyle = {
       position: 'fixed',
@@ -80,7 +80,7 @@ class Sidebar extends Component {
       textDecoration: 'none',
       color: this.props.background,
       transition: 'left .5s ease-in,opacity .5s .5s ease-in'
-    }
+    };
 
     const items = this.props.items.map((item) => {
       if (item.type === "selector") {
@@ -93,7 +93,7 @@ class Sidebar extends Component {
             type={item.type}
             options={item.options}
             onSelect={this._close}/>
-        )
+        );
       } else {
         return (
           <SidebarItem
@@ -102,11 +102,11 @@ class Sidebar extends Component {
             background={this.props.background}
             color={this.props.color}
             onClick={this._close} />
-        )
+        );
       }
-    })
+    });
 
-    const _toggleIcon = this.state.open ? <LeftArrow /> : <Bars />
+    const _toggleIcon = this.state.open ? <LeftArrow /> : <Bars />;
 
     return (
       <div>
@@ -116,7 +116,7 @@ class Sidebar extends Component {
         <div style={sidebarStyle}>{items}</div>
         <div style={_toggleStyle} onClick={this._toggle}>{_toggleIcon}</div>
       </div>
-    )
+    );
   }
 }
 
@@ -126,7 +126,7 @@ Sidebar.defaultProps = {
   color: '#fff',
   breakPoint: 980,
   items: []
-}
+};
 
 
-export default Sidebar
+export default Sidebar;

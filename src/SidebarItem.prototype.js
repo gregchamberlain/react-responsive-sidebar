@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import LinkContainer from '../LinkContainer';
+import LinkContainer from './LinkContainer';
 import color from 'color';
 
 export default class SidebarItem extends Component {
@@ -27,6 +27,10 @@ export default class SidebarItem extends Component {
   onMouseLeave() {
     this.setState({hover: false})
   }
+
+  icon = (i, style) => {
+    return i ? <div style={style}>{i}</div> : null
+  };
 
   render() {
 
@@ -56,7 +60,7 @@ export default class SidebarItem extends Component {
       background: background,
       color: this.props.color,
       lineHeight: '30px',
-      textAlign: type === "header" ? 'right' : 'left',
+      textAlign: this.props.textAlign,
       fontSize: type === "header" ? '14px' : '18px',
       fontWeight: 700,
       padding: '10px 14px',
@@ -65,17 +69,26 @@ export default class SidebarItem extends Component {
     }
 
     const iconStyle = {
-      float: 'left',
-      marginRight: '14px'
+      left: {
+        float: 'left',
+        marginRight: '14px'
+      },
+      right: {
+        float: 'right',
+        marginLeft: '14px'
+      }
     }
 
     const selectorIconStyle = {
       float: 'right'
     }
 
+    const { leftIcon, rightIcon } = this.props
+    console.log(leftIcon)
 
-    const icon = this.props.icon ? type === "selector" ? null : <div style={iconStyle}>{this.props.icon}</div> : null
-    const selectorIcon = type === "selector" ? <div style={selectorIconStyle}>{this.props.icon}</div> : null
+
+    // const icon = this.props.icon ? type === "selector" ? null : <div style={iconStyle}>{this.props.icon}</div> : null
+    // const selectorIcon = type === "selector" ? <div style={selectorIconStyle}>{this.props.icon}</div> : null
 
     return (
       <LinkContainer
@@ -84,12 +97,20 @@ export default class SidebarItem extends Component {
         onMouseEnter={this.onMouseEnter}
         onMouseLeave={this.onMouseLeave}
         onClick={this.props.onClick}>
-        {icon}
+        {this.icon(leftIcon, iconStyle.left)}
         {this.props.title}
-        {selectorIcon}
+        {this.icon(rightIcon, iconStyle.right)}
       </LinkContainer>
     )
   }
+}
+
+SidebarItem.defaultProps = {
+  textAlign: 'left'
+}
+
+SidebarItem.propTypes = {
+  textAlign: React.PropTypes.string
 }
 
 SidebarItem.contextTypes = {

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Sidebar from '../Sidebar';
+import Sidebar from '../src/Sidebar';
 import ColorPicker from 'react-color'
 import ItemForm from './ItemForm'
 
