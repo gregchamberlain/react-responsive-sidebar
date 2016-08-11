@@ -5,7 +5,7 @@ module.exports = getConfig({
 
   isDev: process.env.NODE_ENV !== "production",
   // entry point for the app
-  in: process.env.NODE_ENV !== "production"?'example/main.js':'src/index.js',
+  in: process.env.NODE_ENV !== "production"?'example/main.js':'index.js',
 
   // Name or full path of output directory
   // commonly named `www` or `public`. This
