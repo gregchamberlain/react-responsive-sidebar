@@ -1,5 +1,7 @@
 /example
 /node_modules
+/src
+/config
 .babelrc
 webpack.config.js
 .gitignore
