@@ -9,7 +9,7 @@
     "sidenav",
     "responsive"
   ],
-  "main": "index.js",
+  "main": "dist/bundle.js",
   "scripts": {
     "start": "hjs-dev-server",
     "build": "NODE_ENV=production webpack --progress"
@@ -18,7 +18,7 @@
     "type": "git",
     "url": "git+https://github.com/gregchamberlain/react-sidebar.git"
   },
-  "author": "Greg Chamberlain",
+  "author": "Greg Chamberlain <gregchamberlain94@gmail.com> (https://gregchamberlain.github.io)",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/gregchamberlain/react-sidebar/issues"
