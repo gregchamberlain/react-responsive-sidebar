@@ -1,11 +1,10 @@
 var getConfig = require('hjs-webpack');
 
-
-module.exports = getConfig({
+var config = getConfig({
 
   isDev: process.env.NODE_ENV !== "production",
   // entry point for the app
-  in: process.env.NODE_ENV !== "production"?'example/main.js':'index.js',
+  in: process.env.NODE_ENV !== "production"?'example/main.js':'src/index.js',
 
   // Name or full path of output directory
   // commonly named `www` or `public`. This
@@ -25,3 +24,7 @@ module.exports = getConfig({
   // false by default
   clearBeforeBuild: true
 });
+
+config.output.libraryTarget = "commonjs2";
+
+module.exports = config;
