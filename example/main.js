@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from 'react-dom';
-import  Ghost from 'react-icons/lib/fa/snapchat-ghost';
+import  Ghost from 'react-icons/lib/fa/dashboard';
 
 import { Sidebar, SidebarItem } from '../src';
 
@@ -17,14 +17,14 @@ import { Sidebar, SidebarItem } from '../src';
 
 let items = [
   <SidebarItem title="Greg Chamberlain" type="header" href="/home"/>,
-  <SidebarItem title="Dashboard" />,
+  <SidebarItem title="Dashboard" leftIcon={<Ghost />} />,
   <SidebarItem title="Profile"/>,
   <SidebarItem title="Settings"/>,
 ];
 
 render(
   <div style={{padding: 50}}>
-    <Sidebar content={items} background="grey">
+    <Sidebar content={items}>
     </Sidebar>
   </div>,
 document.getElementById('root'));

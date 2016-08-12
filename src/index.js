@@ -1,4 +1,4 @@
-import SidebarItem from './SidebarItem.prototype';
+import SidebarItem from './SidebarItem';
 import SidebarSelector from './SidebarSelector';
 import Sidebar from './Sidebar';
 export {

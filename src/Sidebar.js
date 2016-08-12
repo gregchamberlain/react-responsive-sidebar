@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import Radium from 'radium';
-import SidebarItem from './SidebarItem.prototype';
+import SidebarItem from './SidebarItem';
 import SidebarSelector from './SidebarSelector';
 import Bars from 'react-icons/lib/fa/bars';
 import LeftArrow from 'react-icons/lib/fa/chevron-left';
@@ -45,31 +45,6 @@ class Sidebar extends Component {
 
   render() {
 
-
-    // const items = this.props.items.map((item) => {
-    //   if (item.type === "selector") {
-    //     return (
-    //       <SidebarSelector
-    //         key={item.id}
-    //         background={this.props.background}
-    //         color={this.props.color}
-    //         selected={item.selected}
-    //         type={item.type}
-    //         options={item.options}
-    //         onSelect={this._close}/>
-    //     );
-    //   } else {
-    //     return (
-    //       <SidebarItem
-    //         {...item}
-    //         key={item.id}
-    //         background={this.props.background}
-    //         color={this.props.color}
-    //         onClick={this._close} />
-    //     );
-    //   }
-    // });
-
     const styles = getStyles(this.props, this.state);
     const _toggleIcon = this.state.open ? <LeftArrow /> : <Bars />;
     const content = this.props.content.map((el, idx) => React.cloneElement(el, {
@@ -95,6 +70,7 @@ Sidebar.propTypes = {
   background: PropTypes.string,
   color: PropTypes.string,
   breakPoint: PropTypes.number,
+  toggleIconSize: PropTypes.number,
   content: PropTypes.arrayOf(PropTypes.element)
 };
 
@@ -103,6 +79,7 @@ Sidebar.defaultProps = {
   background: '#009688',
   color: '#fff',
   breakPoint: 980,
+  toggleIconSize: 28,
   content: []
 };
 
@@ -131,10 +108,10 @@ let getStyles = (props, state) => {
     },
     toggle: {
       position: 'fixed',
-      fontSize: 28,
+      fontSize: props.toggleIconSize,
+      width: props.toggleIconSize,
+      height: props.toggleIconSize,
       borderRadius: 5,
-      width: 28,
-      height: 28,
       top: state.collapsed ? 10 : -999,
       left: state.open ? props.width + 14 : 14,
       opacity: state.collapsed ? 1 : 0,
