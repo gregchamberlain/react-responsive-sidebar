@@ -84,7 +84,6 @@ export default class SidebarItem extends Component {
     }
 
     const { leftIcon, rightIcon } = this.props
-    console.log(leftIcon)
 
 
     // const icon = this.props.icon ? type === "selector" ? null : <div style={iconStyle}>{this.props.icon}</div> : null

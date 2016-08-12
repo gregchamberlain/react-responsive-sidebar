@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
+import Radium from 'radium';
 import SidebarItem from './SidebarItem.prototype';
 import SidebarSelector from './SidebarSelector';
 import Bars from 'react-icons/lib/fa/bars';
@@ -44,43 +45,6 @@ class Sidebar extends Component {
 
   render() {
 
-    const sidebarStyle = {
-      position: 'fixed',
-      left: !this.state.collapsed || this.state.open ? 0 : -this.props.width,
-      top: 0,
-      bottom: 0,
-      overflow: 'hidden',
-      width: this.props.width,
-      background: this.props.background,
-      color: this.props.color,
-      transition: 'left .5s ease-in'
-    };
-
-    const contentStyle = {
-      position: 'fixed',
-      left: this.state.collapsed ? 0 : this.props.width,
-      top: 0,
-      right: 0,
-      bottom: 0,
-      overflowX: 'hidden',
-      overflowY: 'scroll',
-      transition: 'left .5s ease-in'
-    };
-
-    const _toggleStyle = {
-      position: 'fixed',
-      fontSize: 28,
-      borderRadius: 5,
-      width: 28,
-      height: 28,
-      top: this.state.collapsed ? 10 : -999,
-      left: this.state.open ? this.props.width + 14 : 14,
-      opacity: this.state.collapsed ? 1 : 0,
-      cursor: 'pointer',
-      textDecoration: 'none',
-      color: this.props.background,
-      transition: 'left .5s ease-in,opacity .5s .5s ease-in'
-    };
 
     const items = this.props.items.map((item) => {
       if (item.type === "selector") {
@@ -106,19 +70,105 @@ class Sidebar extends Component {
       }
     });
 
+    const styles = getStyles(this.props, this.state);
     const _toggleIcon = this.state.open ? <LeftArrow /> : <Bars />;
 
     return (
       <div>
         {/*Renders the children as the main content*/}
-        <div style={contentStyle}>{this.props.children}</div>
+        <div style={styles.content}>{this.props.children}</div>
         {/*Renders the Sidebar with given input array children*/}
-        <div style={sidebarStyle}>{items}</div>
-        <div style={_toggleStyle} onClick={this._toggle}>{_toggleIcon}</div>
+        <div style={styles.sidebar}>{items}</div>
+        <div style={styles.toggle} onClick={this._toggle}>{_toggleIcon}</div>
       </div>
     );
   }
 }
+
+let getStyles = (props, state) => {
+  return {
+    sidebar: {
+      position: 'fixed',
+      left: !state.collapsed || state.open ? 0 : -props.width,
+      top: 0,
+      bottom: 0,
+      overflow: 'hidden',
+      width: props.width,
+      background: props.background,
+      color: props.color,
+      transition: 'left .5s ease-in',
+    },
+    content: {
+      position: 'fixed',
+      left: state.collapsed ? 0 : props.width,
+      top: 0,
+      right: 0,
+      bottom: 0,
+      overflowX: 'hidden',
+      overflowY: 'scroll',
+      transition: 'left .5s ease-in',
+    },
+    toggle: {
+      position: 'fixed',
+      fontSize: 28,
+      borderRadius: 5,
+      width: 28,
+      height: 28,
+      top: state.collapsed ? 10 : -999,
+      left: state.open ? props.width + 14 : 14,
+      opacity: state.collapsed ? 1 : 0,
+      cursor: 'pointer',
+      textDecoration: 'none',
+      color: props.background,
+      transition: 'left .5s ease-in,opacity .5s .5s ease-in',
+    },
+  };
+};
+// let styles = {
+//   sidebar: {
+//     position: 'fixed',
+//     left: !this.state.collapsed || this.state.open ? 0 : -this.props.width,
+//     top: 0,
+//     bottom: 0,
+//     overflow: 'hidden',
+//     width: this.props.width,
+//     background: this.props.background,
+//     color: this.props.color,
+//     transition: 'left .5s ease-in',
+//   },
+//   content: {
+//     position: 'fixed',
+//     left: this.state.collapsed ? 0 : this.props.width,
+//     top: 0,
+//     right: 0,
+//     bottom: 0,
+//     overflowX: 'hidden',
+//     overflowY: 'scroll',
+//     transition: 'left .5s ease-in',
+//   },
+//   toggle: {
+//     position: 'fixed',
+//     fontSize: 28,
+//     borderRadius: 5,
+//     width: 28,
+//     height: 28,
+//     top: this.state.collapsed ? 10 : -999,
+//     left: this.state.open ? this.props.width + 14 : 14,
+//     opacity: this.state.collapsed ? 1 : 0,
+//     cursor: 'pointer',
+//     textDecoration: 'none',
+//     color: this.props.background,
+//     transition: 'left .5s ease-in,opacity .5s .5s ease-in',
+//   },
+// };
+//
+Sidebar.propTypes = {
+  width: PropTypes.number,
+  background: PropTypes.string,
+  color: PropTypes.string,
+  breakPoint: PropTypes.number,
+  sidebar: PropTypes.arrayOf(PropTypes.element)
+};
 
 Sidebar.defaultProps = {
   width: 300,
@@ -129,4 +179,4 @@ Sidebar.defaultProps = {
 };
 
 
-export default Sidebar;
+export default Radium(Sidebar);
