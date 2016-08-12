@@ -46,44 +46,65 @@ class Sidebar extends Component {
   render() {
 
 
-    const items = this.props.items.map((item) => {
-      if (item.type === "selector") {
-        return (
-          <SidebarSelector
-            key={item.id}
-            background={this.props.background}
-            color={this.props.color}
-            selected={item.selected}
-            type={item.type}
-            options={item.options}
-            onSelect={this._close}/>
-        );
-      } else {
-        return (
-          <SidebarItem
-            {...item}
-            key={item.id}
-            background={this.props.background}
-            color={this.props.color}
-            onClick={this._close} />
-        );
-      }
-    });
+    // const items = this.props.items.map((item) => {
+    //   if (item.type === "selector") {
+    //     return (
+    //       <SidebarSelector
+    //         key={item.id}
+    //         background={this.props.background}
+    //         color={this.props.color}
+    //         selected={item.selected}
+    //         type={item.type}
+    //         options={item.options}
+    //         onSelect={this._close}/>
+    //     );
+    //   } else {
+    //     return (
+    //       <SidebarItem
+    //         {...item}
+    //         key={item.id}
+    //         background={this.props.background}
+    //         color={this.props.color}
+    //         onClick={this._close} />
+    //     );
+    //   }
+    // });
 
     const styles = getStyles(this.props, this.state);
     const _toggleIcon = this.state.open ? <LeftArrow /> : <Bars />;
+    const content = this.props.content.map((el, idx) => React.cloneElement(el, {
+       key: idx,
+       background: el.props.background ?
+       el.props.background : this.props.background
+     }));
 
     return (
       <div>
         {/*Renders the children as the main content*/}
         <div style={styles.content}>{this.props.children}</div>
         {/*Renders the Sidebar with given input array children*/}
-        <div style={styles.sidebar}>{items}</div>
+        <div style={styles.sidebar}>{content}</div>
         <div style={styles.toggle} onClick={this._toggle}>{_toggleIcon}</div>
       </div>
     );
   }
 }
+
+Sidebar.propTypes = {
+  width: PropTypes.number,
+  background: PropTypes.string,
+  color: PropTypes.string,
+  breakPoint: PropTypes.number,
+  content: PropTypes.arrayOf(PropTypes.element)
+};
+
+Sidebar.defaultProps = {
+  width: 300,
+  background: '#009688',
+  color: '#fff',
+  breakPoint: 980,
+  content: []
+};
 
 let getStyles = (props, state) => {
   return {
@@ -124,59 +145,7 @@ let getStyles = (props, state) => {
     },
   };
 };
-// let styles = {
-//   sidebar: {
-//     position: 'fixed',
-//     left: !this.state.collapsed || this.state.open ? 0 : -this.props.width,
-//     top: 0,
-//     bottom: 0,
-//     overflow: 'hidden',
-//     width: this.props.width,
-//     background: this.props.background,
-//     color: this.props.color,
-//     transition: 'left .5s ease-in',
-//   },
-//   content: {
-//     position: 'fixed',
-//     left: this.state.collapsed ? 0 : this.props.width,
-//     top: 0,
-//     right: 0,
-//     bottom: 0,
-//     overflowX: 'hidden',
-//     overflowY: 'scroll',
-//     transition: 'left .5s ease-in',
-//   },
-//   toggle: {
-//     position: 'fixed',
-//     fontSize: 28,
-//     borderRadius: 5,
-//     width: 28,
-//     height: 28,
-//     top: this.state.collapsed ? 10 : -999,
-//     left: this.state.open ? this.props.width + 14 : 14,
-//     opacity: this.state.collapsed ? 1 : 0,
-//     cursor: 'pointer',
-//     textDecoration: 'none',
-//     color: this.props.background,
-//     transition: 'left .5s ease-in,opacity .5s .5s ease-in',
-//   },
-// };
-//
-Sidebar.propTypes = {
-  width: PropTypes.number,
-  background: PropTypes.string,
-  color: PropTypes.string,
-  breakPoint: PropTypes.number,
-  sidebar: PropTypes.arrayOf(PropTypes.element)
-};
 
-Sidebar.defaultProps = {
-  width: 300,
-  background: '#009688',
-  color: '#fff',
-  breakPoint: 980,
-  items: []
-};
 
 
 export default Radium(Sidebar);

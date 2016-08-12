@@ -50,7 +50,7 @@ export default class SidebarItem extends Component {
       }
     } else if (this.state.hover) {
       background = color(this.props.background).lighten(0.4).hexString()
-    } else if (this.props.href && this.context.router.isActive(this.props.href)) {
+    } else if (this.props.href && this.context.router && this.context.router.isActive(this.props.href)) {
       background = color(this.props.background).lighten(0.3).hexString()
     }
 
@@ -105,7 +105,8 @@ export default class SidebarItem extends Component {
 }
 
 SidebarItem.defaultProps = {
-  textAlign: 'left'
+  textAlign: 'left',
+  // background: "#009688",
 }
 
 SidebarItem.propTypes = {
@@ -113,5 +114,5 @@ SidebarItem.propTypes = {
 }
 
 SidebarItem.contextTypes = {
-  router: React.PropTypes.object.isRequired
+  router: React.PropTypes.object
 }

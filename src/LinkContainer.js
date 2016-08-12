@@ -11,7 +11,9 @@ export default class LinkContainer extends Component {
     if (this.props.href) {
       console.log(this.props.href);
     }
-    this.props.onClick();
+    if (this.props.onClick) {
+      this.props.onClick();
+    }
   }
 
   render() {
