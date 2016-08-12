@@ -57,6 +57,9 @@ class Sidebar extends Component {
       <div>
         {/*Renders the children as the main content*/}
         <div style={styles.content}>{this.props.children}</div>
+        {/*Renders the Backdrop when the drawn is collapsed and opened*/}
+        {this.props.backdrop ?
+          <div style={styles.backdrop} onClick={this._close}></div> : ""}
         {/*Renders the Sidebar with given input array children*/}
         <div style={styles.sidebar}>{content}</div>
         <div style={styles.toggle} onClick={this._toggle}>{_toggleIcon}</div>
@@ -71,7 +74,10 @@ Sidebar.propTypes = {
   color: PropTypes.string,
   breakPoint: PropTypes.number,
   toggleIconSize: PropTypes.number,
-  content: PropTypes.arrayOf(PropTypes.element)
+  toggleIconColor: PropTypes.string,
+  content: PropTypes.arrayOf(PropTypes.element),
+  backdrop: PropTypes.bool,
+  closeOnBackdropClick: PropTypes.bool,
 };
 
 Sidebar.defaultProps = {
@@ -80,7 +86,9 @@ Sidebar.defaultProps = {
   color: '#fff',
   breakPoint: 980,
   toggleIconSize: 28,
-  content: []
+  content: [],
+  backdrop: true,
+  closeOnBackdropClick: true,
 };
 
 let getStyles = (props, state) => {
@@ -117,8 +125,20 @@ let getStyles = (props, state) => {
       opacity: state.collapsed ? 1 : 0,
       cursor: 'pointer',
       textDecoration: 'none',
-      color: props.background,
+      color: props.toggleIconColor || props.background,
       transition: 'left .5s ease-in,opacity .5s .5s ease-in',
+    },
+    backdrop: {
+      position: 'fixed',
+      visibility: state.collapsed && state.open ? "visible" : "hidden",
+      background: 'black',
+      opacity: state.collapsed && state.open ? 0.3 : 0,
+      left: 0,
+      top: 0,
+      right: 0,
+      bottom: 0,
+      overflow: 'hidden',
+      transition: 'left .5s ease-in,opacity .5s ease-in, visibility .5s',
     },
   };
 };

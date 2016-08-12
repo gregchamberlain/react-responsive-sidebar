@@ -29,9 +29,12 @@ render (
 | -------- | ---- | ----- | --------- |
 |background|string|#009688|background color of the sidebar|
 |color|string|#fff|text color for sidebar items|
+|backdrop|bool|true|show a backdrop when sidebar is opened from collapsed state|
+|closeOnBackdropClick|bool|true|closes the sidebar when the backdrop is clicked|
 |width|number|300|width of sidebar|
 |breakPoint|number|980|breakpoint where the sidebar collapses (px)|
 |toggleIconSize|number|28|size of the toggle icon (px)|
+|toggleIconColor|string|background|color of the icon that toggles the sidebar|
 |content|array|n/a|content to fill the sidebar with (SidebarItem, SidebarSelector)|
 
 ## SidebarItem
