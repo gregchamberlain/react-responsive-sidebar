@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import LinkContainer from './LinkContainer';
 import color from 'color';
 
@@ -112,7 +112,13 @@ SidebarItem.defaultProps = {
 }
 
 SidebarItem.propTypes = {
-  textAlign: React.PropTypes.string
+  title: PropTypes.string,
+  background: PropTypes.string,
+  href: PropTypes.string,
+  leftIcon: PropTypes.element,
+  rightIcon: PropTypes.element,
+  textAlign: PropTypes.string,
+  onClick: PropTypes.func,
 }
 
 SidebarItem.contextTypes = {

@@ -1,7 +1,10 @@
 # react-responsive-sidebar
 A simple and elegant responsive sidebar component for react
 
-[Link to Header](#sidebar)
+[Sidebar](#sidebar)
+[SidebarItem](#sidebaritem)
+[SidebarSelector](#sidebarSelector)
+[LinkContainer](#linkcontainer)
 
 ## Getting Started
 This component works best as the outer most visual component in your app. You may wrap it in data container components, but it is not suggested to nest it within other visual elements for the time being.
@@ -40,3 +43,23 @@ render (
 |content|array|n/a|content to fill the sidebar with (SidebarItem, SidebarSelector)|
 
 ## SidebarItem
+
+|Property  |Type  |Default|Description|
+| -------- |:----:|:-----:| --------- |
+|title|string|n/a|the text contained within the item|
+|background|string|sidebar.background|background color, inherited from sidebar if not set manually|
+|href|string|n/a|where to go on click, react-router compatible but not required|
+|leftIcon|element|n/a|Icon used for the left side of the item. (react-icons is a great package for this)|
+|rightIcon|element|n/a|Icon used for the right side of the item. (react-icons is a great package for this)|
+|textAlign|string|left|alignment of the title within the item|
+|onClick|func|n/a|a function to call when the item is clicked|
+
+## SidebarSelector
+
+|Property  |Type  |Default|Description|
+| -------- | ---- | ----- | --------- |
+
+## LinkContainer
+
+|Property  |Type  |Default|Description|
+| -------- | ---- | ----- | --------- |
