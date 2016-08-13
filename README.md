@@ -1,6 +1,8 @@
 # react-responsive-sidebar
 A simple and elegant responsive sidebar component for react
 
+[Link to Header](#sidebar)
+
 ## Getting Started
 This component works best as the outer most visual component in your app. You may wrap it in data container components, but it is not suggested to nest it within other visual elements for the time being.
 
@@ -25,7 +27,7 @@ render (
 
 ## Sidebar
 
-|Property  |Type  |default|description|
+|Property  |Type  |Default|Description|
 | -------- | ---- | ----- | --------- |
 |background|string|#009688|background color of the sidebar|
 |color|string|#fff|text color for sidebar items|

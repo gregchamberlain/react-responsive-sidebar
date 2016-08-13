@@ -1,7 +1,5 @@
 import React, { Component, PropTypes } from 'react';
 import Radium from 'radium';
-import SidebarItem from './SidebarItem';
-import SidebarSelector from './SidebarSelector';
 import Bars from 'react-icons/lib/fa/bars';
 import LeftArrow from 'react-icons/lib/fa/chevron-left';
 
@@ -13,9 +11,17 @@ class Sidebar extends Component {
       collapsed: window.innerWidth <= this.props.breakPoint,
       open: false,
     };
+    window.onkeyup = this.onKeyUp
     this._toggle = this._toggle.bind(this);
     this._handleResize = this._handleResize.bind(this);
     this._close = this._close.bind(this);
+  }
+
+  onKeyUp = (e) => {
+    let code = e.keyCode ? e.keyCode : e.which;
+    if (code === 27 && this.state.collapsed && this.state.open) {
+      this._close();
+    }
   }
 
   componentDidMount() {
@@ -59,7 +65,8 @@ class Sidebar extends Component {
         <div style={styles.content}>{this.props.children}</div>
         {/*Renders the Backdrop when the drawn is collapsed and opened*/}
         {this.props.backdrop ?
-          <div style={styles.backdrop} onClick={this._close}></div> : ""}
+          <div style={styles.backdrop} onClick={this._close}></div> : ""
+        }
         {/*Renders the Sidebar with given input array children*/}
         <div style={styles.sidebar}>{content}</div>
         <div style={styles.toggle} onClick={this._toggle}>{_toggleIcon}</div>
