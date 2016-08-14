@@ -11,6 +11,7 @@ class Sidebar extends Component {
       collapsed: window.innerWidth <= this.props.breakPoint,
       open: false,
     };
+    props.onCollapse(this.state.collapsed);
     window.onkeyup = this.onKeyUp
     this._toggle = this._toggle.bind(this);
     this._handleResize = this._handleResize.bind(this);
