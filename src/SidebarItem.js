@@ -1,8 +1,9 @@
 import React, { Component, PropTypes } from 'react';
 import LinkContainer from './LinkContainer';
 import color from 'color';
+import Radium from 'radium'
 
-export default class SidebarItem extends Component {
+class SidebarItem extends Component {
 
   constructor(props) {
     super(props)
@@ -54,32 +55,7 @@ export default class SidebarItem extends Component {
       background = color(this.props.background).lighten(0.3).hexString()
     }
 
-    const conatinerStyle = {
-      width: '100%',
-      height: '48px',
-      background: background,
-      color: this.props.color,
-      lineHeight: '30px',
-      textAlign: this.props.textAlign,
-      fontSize: type === "header" ? '14px' : '18px',
-      fontWeight: 700,
-      padding: '10px 14px',
-      boxSizing: 'border-box',
-      cursor: 'pointer'
-    }
-
-    const iconStyle = {
-      left: {
-        float: 'left',
-        marginRight: '14px',
-        lineHeight: '24px',
-      },
-      right: {
-        float: 'right',
-        marginLeft: '14px',
-        lineHeight: '24px',
-      }
-    }
+    const styles = getStyles(this.props);
 
     const selectorIconStyle = {
       float: 'right'
@@ -93,14 +69,14 @@ export default class SidebarItem extends Component {
 
     return (
       <LinkContainer
-        style={conatinerStyle}
+        style={styles.container}
         href={this.props.href}
         onMouseEnter={this.onMouseEnter}
         onMouseLeave={this.onMouseLeave}
         onClick={this.props.onClick}>
-        {this.icon(leftIcon, iconStyle.left)}
+        {this.icon(leftIcon, styles.icons.left)}
         {this.props.title}
-        {this.icon(rightIcon, iconStyle.right)}
+        {this.icon(rightIcon, styles.icons.right)}
       </LinkContainer>
     )
   }
@@ -125,3 +101,35 @@ SidebarItem.propTypes = {
 SidebarItem.contextTypes = {
   router: React.PropTypes.object
 }
+
+const getStyles = (props) => {
+  return {
+    container: {
+      width: '100%',
+      height: '48px',
+      background: props.background,
+      color: props.color,
+      lineHeight: '30px',
+      textAlign: props.textAlign,
+      fontSize: props.type === "header" ? '14px' : '18px',
+      fontWeight: 700,
+      padding: '10px 14px',
+      boxSizing: 'border-box',
+      cursor: 'pointer'
+    },
+    icons: {
+      left: {
+        float: 'left',
+        marginRight: '14px',
+        lineHeight: '24px',
+      },
+      right: {
+        float: 'right',
+        marginLeft: '14px',
+        lineHeight: '24px',
+      }
+    },
+  }
+}
+
+export default Radium(SidebarItem);

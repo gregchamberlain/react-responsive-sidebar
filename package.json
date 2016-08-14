@@ -10,7 +10,7 @@
   ],
   "main": "index.js",
   "scripts": {
-    "start": "hjs-dev-server --progress",
+    "start": "hjs-dev-server",
     "build": "NODE_ENV=production webpack --progress"
   },
   "repository": {
