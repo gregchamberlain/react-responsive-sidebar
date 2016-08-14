@@ -7,9 +7,15 @@ import { Sidebar, SidebarItem } from '../src';
 import { Router, Route, browserHistory } from 'react-router'
 
 let items = [
-  <SidebarItem title="Dashboard" leftIcon={<Dashboard />} href="/dashboard" color="red"/>,
-  <SidebarItem title="Profile" leftIcon={<User />} href="/profile"/>,
-  <SidebarItem title="Settings" leftIcon={<Gear />} href="/settings"/>,
+  <SidebarItem leftIcon={<Dashboard />} href="/dashboard">
+    Dashboard
+  </SidebarItem>,
+  <SidebarItem leftIcon={<User />} href="/profile">
+    Profile
+  </SidebarItem>,
+  <SidebarItem title="Settings" leftIcon={<Gear />} href="/settings">
+    Settings
+  </SidebarItem>,
 ];
 
 let toolbarStyle = {
@@ -21,7 +27,7 @@ let toolbarStyle = {
   background: '#444',
 }
 
-const App = (props) => <Sidebar content={items} toggleIconColor="#ccc">{props.children}</Sidebar>;
+const App = (props) => <Sidebar content={items} background="#e535b5"  >{props.children}</Sidebar>;
 const DashPage = (props) => <div><div style={toolbarStyle}></div><h1>Dashboard</h1></div>;
 const ProfilePage = (props) => <div><h1>Profile</h1></div>;
 const SettingsPage = (props) => <div><h1>Settings</h1></div>;

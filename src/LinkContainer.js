@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
+import Radium from 'radium';
 
-export default class LinkContainer extends Component {
+class LinkContainer extends Component {
 
 
   onClick = () => {
@@ -17,8 +18,6 @@ export default class LinkContainer extends Component {
     return (
       <div
         style={this.props.style}
-        onMouseEnter={this.props.onMouseEnter}
-        onMouseLeave={this.props.onMouseLeave}
         onClick={this.onClick} >
         {this.props.children}
       </div>
@@ -30,11 +29,11 @@ LinkContainer.propTypes = {
   href: PropTypes.string,
   onClick: PropTypes.func,
   style: PropTypes.object,
-  onMouseEnter: PropTypes.func,
-  onMouseLeave: PropTypes.func,
   children: PropTypes.array,
 };
 
 LinkContainer.contextTypes = {
   router: React.PropTypes.object,
 };
+
+export default Radium(LinkContainer);

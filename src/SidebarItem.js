@@ -5,86 +5,23 @@ import Radium from 'radium'
 
 class SidebarItem extends Component {
 
-  constructor(props) {
-    super(props)
-    this.state = {
-      hover: false
-    }
-    this.onClick = this.onClick.bind(this)
-    this.onMouseEnter = this.onMouseEnter.bind(this)
-    this.onMouseLeave = this.onMouseLeave.bind(this)
-  }
-
-  onClick() {
-    if (this.props.onClick) {
-      this.props.onClick()
-    }
-  }
-
-  onMouseEnter() {
-    this.setState({hover: true})
-  }
-
-  onMouseLeave() {
-    this.setState({hover: false})
-  }
-
-  icon = (i, style) => {
-    return i ? <div style={style}>{i}</div> : null
-  };
-
   render() {
-
-    let background = this.props.background
-    const type = this.props.type
-    if (type === "header") {
-      if (this.state.hover) {
-        background = color(this.props.background).darken(0.4).hexString()
-      } else {
-        background = color(this.props.background).darken(0.3).hexString()
-      }
-    } else if (type === "selector") {
-      if (this.state.hover) {
-        background = color(this.props.background).darken(0.25).hexString()
-      } else {
-        background = color(this.props.background).darken(0.2).hexString()
-      }
-    } else if (this.state.hover) {
-      background = color(this.props.background).lighten(0.4).hexString()
-    } else if (this.props.href && this.context.router && this.context.router.isActive(this.props.href)) {
-      background = color(this.props.background).lighten(0.3).hexString()
-    }
 
     const styles = getStyles(this.props);
 
-    const selectorIconStyle = {
-      float: 'right'
-    }
-
-    const { leftIcon, rightIcon } = this.props
-
-
-    // const icon = this.props.icon ? type === "selector" ? null : <div style={iconStyle}>{this.props.icon}</div> : null
-    // const selectorIcon = type === "selector" ? <div style={selectorIconStyle}>{this.props.icon}</div> : null
+    const { leftIcon, rightIcon, children, onClick, href } = this.props
 
     return (
       <LinkContainer
         style={styles.container}
-        href={this.props.href}
-        onMouseEnter={this.onMouseEnter}
-        onMouseLeave={this.onMouseLeave}
-        onClick={this.props.onClick}>
-        {this.icon(leftIcon, styles.icons.left)}
-        {this.props.title}
-        {this.icon(rightIcon, styles.icons.right)}
+        href={href}
+        onClick={onClick}>
+        {leftIcon}
+        <div style={styles.content}>{children}</div>
+        {rightIcon}
       </LinkContainer>
     )
   }
-}
-
-SidebarItem.defaultProps = {
-  textAlign: 'left',
-  // background: "#009688",
 }
 
 SidebarItem.propTypes = {
@@ -98,6 +35,10 @@ SidebarItem.propTypes = {
   onClick: PropTypes.func,
 }
 
+SidebarItem.defaultProps = {
+  textAlign: 'left',
+}
+
 SidebarItem.contextTypes = {
   router: React.PropTypes.object
 }
@@ -105,29 +46,24 @@ SidebarItem.contextTypes = {
 const getStyles = (props) => {
   return {
     container: {
-      width: '100%',
+      display: 'flex',
+      alignItems: 'center',
       height: '48px',
       background: props.background,
       color: props.color,
-      lineHeight: '30px',
       textAlign: props.textAlign,
       fontSize: props.type === "header" ? '14px' : '18px',
       fontWeight: 700,
       padding: '10px 14px',
       boxSizing: 'border-box',
-      cursor: 'pointer'
-    },
-    icons: {
-      left: {
-        float: 'left',
-        marginRight: '14px',
-        lineHeight: '24px',
+      cursor: 'pointer',
+      ':hover': {
+        background: props.highlight || "rgba(255, 255, 255, .2)",
       },
-      right: {
-        float: 'right',
-        marginLeft: '14px',
-        lineHeight: '24px',
-      }
+    },
+    content: {
+      flexGrow: 1,
+      margin: '0px 15px'
     },
   }
 }

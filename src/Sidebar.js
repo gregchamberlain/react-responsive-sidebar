@@ -55,8 +55,6 @@ class Sidebar extends Component {
     const _toggleIcon = this.state.open ? <LeftArrow /> : <Bars />;
     const content = this.props.content.map((el, idx) => React.cloneElement(el, {
        key: idx,
-       background: el.props.background ?
-       el.props.background : this.props.background
      }));
 
     return (
