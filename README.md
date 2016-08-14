@@ -65,8 +65,3 @@ render (
 
 |Property  |Type  |Default|Description|
 | -------- | ---- | ----- | --------- | -->
-
-## LinkContainer
-
-|Property  |Type  |Default|Description|
-| -------- | ---- | ----- | --------- |
