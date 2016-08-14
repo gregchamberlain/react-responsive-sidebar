@@ -114,6 +114,7 @@ SidebarItem.defaultProps = {
 SidebarItem.propTypes = {
   title: PropTypes.string,
   background: PropTypes.string,
+  color: PropTypes.string,
   href: PropTypes.string,
   leftIcon: PropTypes.element,
   rightIcon: PropTypes.element,

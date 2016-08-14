@@ -1,29 +1,30 @@
 {
-  "name": "react-responsive-sidebar",
-  "version": "0.1.8",
-  "description": "A simple responsive sidebar component for React",
+  "name": "react-responsive-toolbar",
+  "version": "0.1.0",
+  "description": "A simple responsive toolbar component for React",
   "keywords": [
     "react",
     "react-component",
-    "sidebar",
-    "sidenav",
+    "toolbar",
+    "navbar",
+    "appbar",
     "responsive"
   ],
   "main": "index.js",
   "scripts": {
-    "start": "hjs-dev-server",
+    "start": "hjs-dev-server --progress",
     "build": "NODE_ENV=production webpack --progress"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/gregchamberlain/react-sidebar.git"
+    "url": "git+https://github.com/gregchamberlain/react-responsive-toolbar.git"
   },
   "author": "Greg Chamberlain <gregchamberlain94@gmail.com> (https://gregchamberlain.github.io)",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/gregchamberlain/react-sidebar/issues"
+    "url": "https://github.com/gregchamberlain/react-responsive-toolbar/issues"
   },
-  "homepage": "https://github.com/gregchamberlain/react-sidebar#readme",
+  "homepage": "https://github.com/gregchamberlain/react-responsive-toolbar#readme",
   "devDependencies": {
     "babel-core": "^6.5.2",
     "babel-eslint": "^6.1.2",

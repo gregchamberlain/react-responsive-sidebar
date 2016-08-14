@@ -3,7 +3,7 @@ A simple and elegant responsive sidebar component for react
 
 [Sidebar](#sidebar)
 [SidebarItem](#sidebaritem)
-[SidebarSelector](#sidebarSelector)
+[SidebarSelector](#sidebarselector)
 [LinkContainer](#linkcontainer)
 
 ## Getting Started
@@ -48,6 +48,7 @@ render (
 | -------- |:----:|:-----:| --------- |
 |title|string|n/a|the text contained within the item|
 |background|string|sidebar.background|background color, inherited from sidebar if not set manually|
+|color|string|white|text and icon color|
 |href|string|n/a|where to go on click, react-router compatible but not required|
 |leftIcon|element|n/a|Icon used for the left side of the item. (react-icons is a great package for this)|
 |rightIcon|element|n/a|Icon used for the right side of the item. (react-icons is a great package for this)|
