@@ -75,7 +75,7 @@ class Sidebar extends Component {
     // }));
 
     return (
-      <div>
+      <div style={{WebkitTapHighlightColor: "rgba(0,0,0,0)"}}>
         {/*Renders the children as the main content*/}
         <div style={styles.content}>{this.props.children}</div>
         {/*Renders the Backdrop when the drawn is collapsed and opened*/}
