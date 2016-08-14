@@ -90,6 +90,8 @@ class Sidebar extends Component {
   }
 }
 
+let iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+
 Sidebar.propTypes = {
   background: PropTypes.string,
   color: PropTypes.string,
@@ -132,7 +134,8 @@ let getStyles = (props, state) => {
       top: 0,
       bottom: 0,
       overflowX: 'hidden',
-      overflowY: 'auto',
+      overflowY: iOS ? 'scroll' : 'auto',
+      WebkitOverflowScrolling: "touch",
       textAlign: props.textAlign,
       width: props.width,
       background: props.background,
@@ -145,7 +148,8 @@ let getStyles = (props, state) => {
       top: 0,
       right: 0,
       bottom: 0,
-      overflow: 'auto',
+      overflow: iOS ? 'scroll' : 'auto',
+      WebkitOverflowScrolling: "touch",
       transition: 'left .5s ease-in',
     },
     toggle: {
