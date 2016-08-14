@@ -40,6 +40,10 @@ class Sidebar extends Component {
     }
   }
 
+  onItemSelected = (props) => {
+    this.props.onItemSelected(props)
+  }
+
   _close() {
     this.setState({open: false});
   }
@@ -55,7 +59,14 @@ class Sidebar extends Component {
     const _toggleIcon = this.state.open ? <LeftArrow /> : <Bars />;
     const content = this.props.content.map((el, idx) => React.cloneElement(el, {
        key: idx,
+       hoverHighlight: el.props.hoverHighlight || this.props.hoverHighlight,
+       activeHighlight: el.props.activeHighlight || this.props.activeHighlight,
+       onClick: this.onItemSelected,
      }));
+    // const content = React.Children.map(this.props.content, React.cloneElement(item, {
+    //   hoverHighlight: item.props.hoverHighlight || this.props.hoverHighlight,
+    //   activeHighlight: item.props.activeHighlight || this.props.activeHighlight,
+    // }));
 
     return (
       <div>
@@ -82,6 +93,7 @@ Sidebar.propTypes = {
   toggleIconColor: PropTypes.string,
   content: PropTypes.arrayOf(PropTypes.element),
   backdrop: PropTypes.bool,
+  textAlign: PropTypes.string,
   closeOnBackdropClick: PropTypes.bool,
 };
 
@@ -94,6 +106,7 @@ Sidebar.defaultProps = {
   content: [],
   backdrop: true,
   closeOnBackdropClick: true,
+  onItemSelected: () => {}
 };
 
 let getStyles = (props, state) => {
@@ -105,6 +118,7 @@ let getStyles = (props, state) => {
       bottom: 0,
       overflowX: 'hidden',
       overflowY: 'auto',
+      textAlign: props.textAlign,
       width: props.width,
       background: props.background,
       color: props.color,

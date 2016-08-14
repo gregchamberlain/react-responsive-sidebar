@@ -7,7 +7,9 @@ import { Sidebar, SidebarItem } from '../src';
 import { Router, Route, browserHistory } from 'react-router'
 
 let items = [
-  <SidebarItem leftIcon={<Dashboard />} href="/dashboard">
+  <SidebarItem
+    leftIcon={<Dashboard />}
+    href="/dashboard" >
     Dashboard
   </SidebarItem>,
   <SidebarItem leftIcon={<User />} href="/profile">
@@ -27,8 +29,8 @@ let toolbarStyle = {
   background: '#444',
 }
 
-const App = (props) => <Sidebar content={items} background="#e535b5"  >{props.children}</Sidebar>;
-const DashPage = (props) => <div><div style={toolbarStyle}></div><h1>Dashboard</h1></div>;
+const App = (props) => <Sidebar content={items}>{props.children}</Sidebar>;
+const DashPage = (props) => <div style={{height: 3000}}><div style={toolbarStyle}></div><h1>Dashboard</h1></div>;
 const ProfilePage = (props) => <div><h1>Profile</h1></div>;
 const SettingsPage = (props) => <div><h1>Settings</h1></div>;
 

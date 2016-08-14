@@ -15,28 +15,29 @@ class SidebarItem extends Component {
       <LinkContainer
         style={styles.container}
         href={href}
+        hoverHighlight={this.props.hoverHighlight}
+        activeHighlight={this.props.activeHighlight}
         onClick={onClick}>
-        {leftIcon}
-        <div style={styles.content}>{children}</div>
-        {rightIcon}
+        <div style={styles.content}>
+          {leftIcon}
+          <div style={styles.text}>{children}</div>
+          {rightIcon}
+        </div>
       </LinkContainer>
     )
   }
 }
 
 SidebarItem.propTypes = {
-  title: PropTypes.string,
   background: PropTypes.string,
   color: PropTypes.string,
   href: PropTypes.string,
   leftIcon: PropTypes.element,
   rightIcon: PropTypes.element,
   textAlign: PropTypes.string,
+  hoverHighlight: PropTypes.string,
+  activeHightlight: PropTypes.string,
   onClick: PropTypes.func,
-}
-
-SidebarItem.defaultProps = {
-  textAlign: 'left',
 }
 
 SidebarItem.contextTypes = {
@@ -46,24 +47,20 @@ SidebarItem.contextTypes = {
 const getStyles = (props) => {
   return {
     container: {
-      display: 'flex',
-      alignItems: 'center',
-      height: '48px',
       background: props.background,
       color: props.color,
-      textAlign: props.textAlign,
       fontSize: props.type === "header" ? '14px' : '18px',
       fontWeight: 700,
-      padding: '10px 14px',
-      boxSizing: 'border-box',
-      cursor: 'pointer',
-      ':hover': {
-        background: props.highlight || "rgba(255, 255, 255, .2)",
-      },
     },
     content: {
+      display: 'flex',
+      padding: 15,
+      boxSizing: 'border-box',
+    },
+    text: {
       flexGrow: 1,
-      margin: '0px 15px'
+      margin: '0px 15px',
+      textAlign: props.textAlign,
     },
   }
 }
