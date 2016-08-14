@@ -34,23 +34,28 @@ class Sidebar extends Component {
 
   _handleResize(e) {
     if (window.innerWidth <= this.props.breakPoint && !this.state.collapsed) {
+      this.props.onCollapse(true)
       this.setState({collapsed: true});
     }else if(window.innerWidth > this.props.breakPoint && this.state.collapsed){
+      this.props.onCollapse(false)
       this.setState({collapsed: false});
     }
   }
 
   onItemSelected = (props) => {
     this.props.onItemSelected(props)
+    if (this.props.closeOnItemSelect) { this._close() };
   }
 
   _close() {
     this.setState({open: false});
+    this.props.onToggle(false);
   }
 
   _toggle() {
     const open = !this.state.open;
     this.setState({open: open});
+    this.props.onToggle(open)
   }
 
   render() {
@@ -85,16 +90,22 @@ class Sidebar extends Component {
 }
 
 Sidebar.propTypes = {
-  width: PropTypes.number,
   background: PropTypes.string,
   color: PropTypes.string,
+  backdrop: PropTypes.bool,
+  closeOnBackdropClick: PropTypes.bool,
+  width: PropTypes.number,
   breakPoint: PropTypes.number,
   toggleIconSize: PropTypes.number,
   toggleIconColor: PropTypes.string,
   content: PropTypes.arrayOf(PropTypes.element),
-  backdrop: PropTypes.bool,
   textAlign: PropTypes.string,
-  closeOnBackdropClick: PropTypes.bool,
+  hoverHighlight: PropTypes.string,
+  activeHightlight: PropTypes.string,
+  onItemSelected: PropTypes.func,
+  onCollapse: PropTypes.func,
+  onToggle: PropTypes.func,
+  closeOnItemSelect: PropTypes.bool,
 };
 
 Sidebar.defaultProps = {
@@ -106,7 +117,10 @@ Sidebar.defaultProps = {
   content: [],
   backdrop: true,
   closeOnBackdropClick: true,
-  onItemSelected: () => {}
+  closeOnItemSelect: true,
+  onItemSelected: () => {},
+  onCollapse: () => {},
+  onToggle: () => {},
 };
 
 let getStyles = (props, state) => {
