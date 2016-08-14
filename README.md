@@ -1,10 +1,9 @@
-# react-responsive-sidebar
+# react-responsive-sidebar [![npm version](https://badge.fury.io/js/react-responsive-sidebar.svg)](https://badge.fury.io/js/react-responsive-sidebar)
+
 A simple and elegant responsive sidebar component for react
 
 [Sidebar](#sidebar)
 [SidebarItem](#sidebaritem)
-[SidebarSelector](#sidebarselector)
-[LinkContainer](#linkcontainer)
 
 ## Getting Started
 This component works best as the outer most visual component in your app. You may wrap it in data container components, but it is not suggested to nest it within other visual elements for the time being.
