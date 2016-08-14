@@ -54,6 +54,7 @@ const getStyles = (props) => {
     },
     content: {
       display: 'flex',
+      alignItems: 'center',
       padding: 15,
       boxSizing: 'border-box',
     },
