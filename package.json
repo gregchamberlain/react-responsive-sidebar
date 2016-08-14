@@ -1,13 +1,11 @@
 {
   "name": "react-responsive-sidebar",
-  "version": "0.1.1",
+  "version": "0.1.9",
   "description": "A simple responsive sidebar component for React",
   "keywords": [
     "react",
     "react-component",
     "sidebar",
-    "navbar",
-    "appbar",
     "responsive"
   ],
   "main": "index.js",
