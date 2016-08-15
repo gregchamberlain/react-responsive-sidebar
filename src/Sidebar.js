@@ -140,7 +140,7 @@ let getStyles = (props, state) => {
       width: props.width,
       background: props.background,
       color: props.color,
-      transition: 'left .5s ease-in',
+      transition: 'left .25s ease-in',
     },
     content: {
       position: 'absolute',
@@ -150,7 +150,7 @@ let getStyles = (props, state) => {
       bottom: 0,
       overflow: iOS ? 'scroll' : 'auto',
       WebkitOverflowScrolling: "touch",
-      transition: 'left .5s ease-in',
+      transition: 'left .25s ease-in',
     },
     toggle: {
       position: 'absolute',
@@ -165,7 +165,7 @@ let getStyles = (props, state) => {
       opacity: state.collapsed ? 1 : 0,
       cursor: 'pointer',
       color: props.toggleIconColor || props.background,
-      transition: 'left .5s ease-in,opacity .5s .5s ease-in',
+      transition: 'left .25s ease-in,opacity .5s .5s ease-in',
     },
     backdrop: {
       position: 'absolute',
@@ -177,7 +177,7 @@ let getStyles = (props, state) => {
       right: 0,
       bottom: 0,
       overflow: 'hidden',
-      transition: 'left .5s ease-in,opacity .5s ease-in, visibility .5s',
+      transition: 'left .25s ease-in,opacity .5s ease-in, visibility .5s',
     },
   };
 };
