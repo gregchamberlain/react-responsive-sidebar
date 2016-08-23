@@ -9,6 +9,11 @@ import { Router, Route, browserHistory } from 'react-router'
 let items = [
   <SidebarItem
     leftIcon={<Dashboard />}
+    href="https://gregchamberlain.github.io" >
+    Test
+  </SidebarItem>,
+  <SidebarItem
+    leftIcon={<Dashboard />}
     href="/dashboard" >
     Dashboard
   </SidebarItem>,
