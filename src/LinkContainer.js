@@ -13,6 +13,10 @@ class LinkContainer extends Component {
   onClick = () => {
     this.props.onClick(this.props);
     if (!this.props.href) { return }
+    if (this.props.href.indexOf("http") === 0) {
+      window.location = this.props.href;
+      return;
+    }
     if (this.context.router) {
       this.context.router.push(this.props.href);
     } else {
