@@ -2,6 +2,7 @@
 /node_modules
 /src
 /config
+/site
 .babelrc
 webpack.config.js
 .gitignore
